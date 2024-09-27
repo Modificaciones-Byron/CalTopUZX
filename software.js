@@ -101,7 +101,7 @@ const logosPath = {
     "O22": "logos/O22.png",
     "ZENIN": "logos/ZENIN.png",
     "21S": "logos/21S.png",
-        // Agrega más equipos y rutas de logos aquí
+    // Agrega más equipos y rutas de logos aquí
 };
 
 const positions = {
@@ -232,108 +232,100 @@ function crearImagen() {
     const ctx = canvas.getContext("2d");
     const img = new Image();
     img.src = "Plantilla/Tabla.png";  // Ruta a la imagen de la plantilla
-    img.onload = function () {
-        canvas.width = img.width;
-        canvas.height = img.height;
-        ctx.drawImage(img, 0, 0);
 
-        let logosCargados = 0;
+    // Cargar la fuente personalizada "impact.ttf" antes de dibujar
+    const font = new FontFace('Impact', 'url(Plantilla/impact.ttf)');
+    
+    font.load().then(function(loadedFont) {
+        // Agregar la fuente al documento
+        document.fonts.add(loadedFont);
 
-        equipos.forEach((equipo, index) => {
-            const logo = new Image();
-            logo.src = logosPath[equipo.nombre] || "logos/default.png"; // logo por defecto si no se encuentra
+        img.onload = function () {
+            canvas.width = img.width;
+            canvas.height = img.height;
+            ctx.drawImage(img, 0, 0);
 
-            logo.onload = function () {
-                ctx.drawImage(logo, ...positions.logo[index], 260, 260);  // Dibujar logo
+            let logosCargados = 0;
 
-                // Cambiar color para el primer equipo
-                if (index === 0) {
-                    ctx.fillStyle = "yellow";  // Nombre en amarillo para el primer equipo
-                } else {
-                    ctx.fillStyle = "white";  // Nombre en blanco para los demás
-                }
+            equipos.forEach((equipo, index) => {
+                const logo = new Image();
+                logo.src = logosPath[equipo.nombre] || "logos/default.png"; // logo por defecto si no se encuentra
 
-                // Establecer la fuente y el tamaño correctos para los nombres de equipos
-                ctx.font = "95px impact";
+                logo.onload = function () {
+                    ctx.drawImage(logo, ...positions.logo[index], 260, 260);  // Dibujar logo
 
-                // Dibujar nombres de equipos (alineación izquierda)
-                ctx.textAlign = "left";
-                ctx.fillText(equipo.nombre, ...positions.equipo[index]);
+                    // Cambiar color para el primer equipo
+                    ctx.fillStyle = (index === 0) ? "yellow" : "white";  // Nombre en amarillo para el primer equipo
 
-                // Cambiar color de kills, top y total para el primer equipo
-                if (index === 0) {
-                    ctx.fillStyle = "black";  // Kills, top y total en negro para el primer equipo
-                } else {
-                    ctx.fillStyle = "white";  // Kills, top y total en blanco para los demás equipos
-                }
+                    // Establecer la fuente cargada y el tamaño correctos para los nombres de equipos
+                    ctx.font = "95px Impact";
 
-                // Establecer la fuente y el tamaño correctos para los números (kills, tops, y total)
-                ctx.font = "125px impact";  // Tamaño de fuente para kills, top y total
-                ctx.textAlign = "center";   // Centramos el texto horizontalmente
+                    // Dibujar nombres de equipos (alineación izquierda)
+                    ctx.textAlign = "left";
+                    ctx.fillText(equipo.nombre, ...positions.equipo[index]);
 
-                // Dibujar kills centrados
-                ctx.fillText(equipo.totalKills, positions.kills[index][0], positions.kills[index][1]);
+                    // Cambiar color de kills, top y total para el primer equipo
+                    ctx.fillStyle = (index === 0) ? "black" : "white";  // Kills, top y total en negro para el primer equipo
 
-                // Dibujar top centrados
-                ctx.fillText(equipo.totalTop, positions.top[index][0], positions.top[index][1]);
+                    // Establecer la fuente y el tamaño correctos para los números (kills, tops, y total)
+                    ctx.font = "125px Impact";  // Tamaño de fuente para kills, top y total
+                    ctx.textAlign = "center";   // Centramos el texto horizontalmente
 
-                // Dibujar total puntaje centrado
-                ctx.fillText(equipo.totalPuntaje, positions.total[index][0], positions.total[index][1]);
+                    // Dibujar kills centrados
+                    ctx.fillText(equipo.totalKills, positions.kills[index][0], positions.kills[index][1]);
 
-                // Verificar si ya se han cargado todos los logos
-                logosCargados++;
-                if (logosCargados === equipos.length) {
-                    setTimeout(() => {
-                        const imgURL = canvas.toDataURL("image/png");
-                        const link = document.createElement("a");
-                        link.href = imgURL;
-                        link.download = "Tabla_Resultados.png";
-                        link.click();
-                    }, 1000);  // Asegurarse de que todos los elementos se hayan dibujado
-                }
-            };
+                    // Dibujar top centrados
+                    ctx.fillText(equipo.totalTop, positions.top[index][0], positions.top[index][1]);
 
-            // Si hay un error cargando el logo, dibuja solo el texto
-            logo.onerror = function () {
-                if (index === 0) {
-                    ctx.fillStyle = "yellow";  // Nombre en amarillo para el primer equipo
-                } else {
-                    ctx.fillStyle = "white";  // Nombre en blanco para los demás
-                }
+                    // Dibujar total puntaje centrado
+                    ctx.fillText(equipo.totalPuntaje, positions.total[index][0], positions.total[index][1]);
 
-                // Dibujar nombres de equipos
-                ctx.font = "95px impact";
-                ctx.textAlign = "left";
-                ctx.fillText(equipo.nombre, ...positions.equipo[index]);
+                    logosCargados++;
+                    if (logosCargados === equipos.length) {
+                        setTimeout(() => {
+                            const imgURL = canvas.toDataURL("image/png");
+                            const link = document.createElement("a");
+                            link.href = imgURL;
+                            link.download = "Tabla_Resultados.png";
+                            link.click();
+                        }, 1000);  // Asegurarse de que todos los elementos se hayan dibujado
+                    }
+                };
 
-                // Cambiar color de kills, top y total para el primer equipo
-                if (index === 0) {
-                    ctx.fillStyle = "black";  // Kills, top y total en negro para el primer equipo
-                } else {
-                    ctx.fillStyle = "white";  // Kills, top y total en blanco para los demás
-                }
+                logo.onerror = function () {
+                    ctx.fillStyle = (index === 0) ? "yellow" : "white";  // Nombre en amarillo para el primer equipo
 
-                // Dibujar kills, top y total centrados con el tamaño adecuado
-                ctx.font = "125px impact";  // Tamaño correcto para los números
-                ctx.textAlign = "center";
+                    // Dibujar nombres de equipos
+                    ctx.font = "95px Impact";
+                    ctx.textAlign = "left";
+                    ctx.fillText(equipo.nombre, ...positions.equipo[index]);
 
-                ctx.fillText(equipo.totalKills, positions.kills[index][0], positions.kills[index][1]);
-                ctx.fillText(equipo.totalTop, positions.top[index][0], positions.top[index][1]);
-                ctx.fillText(equipo.totalPuntaje, positions.total[index][0], positions.total[index][1]);
+                    ctx.fillStyle = (index === 0) ? "black" : "white";  // Kills, top y total en negro para el primer equipo
 
-                logosCargados++;
-                if (logosCargados === equipos.length) {
-                    setTimeout(() => {
-                        const imgURL = canvas.toDataURL("image/png");
-                        const link = document.createElement("a");
-                        link.href = imgURL;
-                        link.download = "Tabla_Resultados.png";
-                        link.click();
-                    }, 1000);
-                }
-            };
-        });
-    };
+                    // Dibujar kills, top y total centrados con el tamaño adecuado
+                    ctx.font = "125px Impact";  // Tamaño correcto para los números
+                    ctx.textAlign = "center";
+
+                    ctx.fillText(equipo.totalKills, positions.kills[index][0], positions.kills[index][1]);
+                    ctx.fillText(equipo.totalTop, positions.top[index][0], positions.top[index][1]);
+                    ctx.fillText(equipo.totalPuntaje, positions.total[index][0], positions.total[index][1]);
+
+                    logosCargados++;
+                    if (logosCargados === equipos.length) {
+                        setTimeout(() => {
+                            const imgURL = canvas.toDataURL("image/png");
+                            const link = document.createElement("a");
+                            link.href = imgURL;
+                            link.download = "Tabla_Resultados.png";
+                            link.click();
+                        }, 1000);
+                    }
+                };
+            });
+        };
+    }).catch(function(error) {
+        console.error("Error loading font: ", error);
+    });
 }
 
 
