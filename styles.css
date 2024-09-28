@@ -33,11 +33,10 @@ h1 {
     }
 }
 
-
 /* Contenedor de equipos */
 .equipos-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Usar columnas flexibles */
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* Columnas flexibles */
     gap: 7px;
     font-size: 9px;
     width: 100%; /* Usar todo el ancho disponible */
@@ -47,7 +46,6 @@ h1 {
     justify-items: center; /* Centrar elementos en el eje horizontal */
     align-items: center; /* Centrar elementos en el eje vertical */
 }
-
 
 .nombre-equipo {
     width: 93px; /* Ajustar el tamaño del input del nombre del equipo */
@@ -64,18 +62,6 @@ h1 {
     box-sizing: border-box;
     display: inline-block; /* Cambiado a inline-block */
     margin: 5px; /* Agregar margen para espaciar los equipos */
-    
-}
-
-.inputs-container {
-    display: flex; /* Puedes mantener esto para alinear los inputs horizontalmente */
-    justify-content: center; /* Centra horizontalmente los inputs */
-    align-items: center; /* Alinea verticalmente los inputs */
-}
-
-
-.equipo:hover {
-    transform: scale(1.02);
 }
 
 /* Contenedor para los inputs de cada equipo */
@@ -98,11 +84,8 @@ input {
     text-align: center; /* Centrar el contenido dentro del input */
     line-height: 18px; /* Ajustar el espacio vertical del texto */
     font-size: 1em; /* Asegúrate de que el texto se ajuste bien */
-    font-size: 10px;
-    text-align: center; /* Centrar el contenido dentro del input */
-    line-height: 20px; /* Ajustar el espacio vertical del texto */
-    font-size: 10px; /* Asegúrate de que el texto se ajuste bien */
 }
+
 /* Ocultar los spinners en inputs de tipo number */
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
@@ -114,7 +97,6 @@ input[type=number]::-webkit-outer-spin-button {
 input[type=number] {
     -moz-appearance: textfield; /* Cambia a estilo de campo de texto */
 }
-
 
 /* Botones */
 button {
@@ -166,24 +148,31 @@ button:active::after {
     transform: translate(-50%, -50%) scale(1); /* Expande el pulsar */
 }
 
-
-
 /* Animación de aparición */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
 }
 
-/* Media Queries para pantallas medianas y grandes */
-@media (min-width: 168px) {
+/* Media Queries para pantallas pequeñas (móviles) */
+@media (max-width: 400px) {
+    h1 {
+        font-size: 2em; /* Reducir el tamaño del encabezado en pantallas pequeñas */
+    }
+
     .equipos-container {
-        grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas medianas y grandes */
+        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+    }
+
+    button {
+        font-size: 12px; /* Ajustar tamaño de fuente de botones en móviles */
+        padding: 10px 5px; /* Ajustar padding para móviles */
     }
 }
 
-/* Media Queries para pantallas pequeñas (móviles) */
-@media (max-width: 167px) {
+/* Media Queries para pantallas medianas y grandes */
+@media (min-width: 401px) {
     .equipos-container {
-        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Dos columnas en pantallas medianas y grandes */
     }
 }
