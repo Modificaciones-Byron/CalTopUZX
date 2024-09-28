@@ -4,7 +4,7 @@ body {
     background-color: #282c34;
     color: white;
     margin: 0;
-    padding: 6px;
+    padding: 2px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,24 +14,25 @@ body {
 
 h1 {
     text-align: center;
-    font-size: 3em; /* Aumentar el tamaño de la fuente */
+    font-size: 2.5em; /* Tamaño de fuente más moderado */
     margin-bottom: 20px;
-    animation: fadeIn 3s, glowing 1.5s infinite alternate; /* Animaciones de aparición y brillo */
-    background: linear-gradient(90deg, #00ff99, #00ccff, #00ff99); /* Degradado colorido */
+    animation: fadeIn 3s, glowing 0.5s infinite alternate; /* Animaciones de aparición y brillo */
+    background: linear-gradient(90deg, #00ff99, #00ccff); /* Degradado colorido */
     -webkit-background-clip: text; /* Clip para el texto */
     -webkit-text-fill-color: transparent; /* Relleno transparente para el clip */
-    text-shadow: 0 0 5px rgba(0, 255, 153, 0.8), 0 0 10px rgba(0, 204, 255, 0.8), 0 0 15px rgba(255, 0, 255, 0.8); /* Sombra de texto */
+    text-shadow: 0 0 10px rgba(0, 255, 153, 0.6), 0 0 15px rgba(0, 204, 255, 0.6); /* Sombra de texto simplificada */
 }
 
 /* Animación de brillo */
 @keyframes glowing {
     0% {
-        text-shadow: 0 0 5px rgba(0, 255, 153, 0.5), 0 0 10px rgba(0, 204, 255, 0.5), 0 0 15px rgba(255, 0, 255, 0.5);
+        text-shadow: 0 0 10px rgba(0, 255, 153, 0.4), 0 0 15px rgba(0, 204, 255, 0.4);
     }
     100% {
-        text-shadow: 0 0 20px rgba(0, 255, 153, 1), 0 0 30px rgba(0, 204, 255, 1), 0 0 40px rgba(255, 0, 255, 1);
+        text-shadow: 0 0 15px rgba(0, 255, 153, 0.8), 0 0 30px rgba(0, 204, 255, 0.8);
     }
 }
+
 
 /* Contenedor de equipos */
 .equipos-container {
@@ -40,7 +41,7 @@ h1 {
     gap: 7px;
     font-size: 9px;
     width: 100%; /* Usar todo el ancho disponible */
-    max-width: 410px; /* Tamaño máximo del contenedor */
+    max-width: 381px; /* Tamaño máximo del contenedor */
     margin: 0 auto; /* Centrar el contenedor */
     box-sizing: border-box; /* Incluye padding y border en el tamaño del contenedor */
     justify-items: center; /* Centrar elementos en el eje horizontal */
@@ -119,12 +120,12 @@ input[type=number] {
 button {
     background: #1c1c1c; /* Color de fondo oscuro */
     color: #00ff99; /* Color del texto brillante */
-    padding: 12px 25px; /* Espaciado interno */
+    padding: 12px 10px; /* Espaciado interno */
     border: 2px solid #00ff99; /* Borde brillante */
     border-radius: 10px; /* Bordes redondeados */
     cursor: pointer; /* Cambia el cursor al pasar por encima */
     transition: all 0.4s ease; /* Transición suave */
-    font-size: 16px; /* Tamaño de la fuente */
+    font-size: 14px; /* Tamaño de la fuente */
     font-weight: bold; /* Texto en negrita */
     position: relative; /* Para el efecto de animación */
     overflow: hidden; /* Para que la animación no salga del botón */
