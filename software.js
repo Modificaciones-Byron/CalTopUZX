@@ -1,3 +1,27 @@
+// Solicitar permisos de almacenamiento en Android al iniciar la app
+document.addEventListener("deviceready", function() {
+    if (cordova.plugins && cordova.plugins.permissions) {
+        var permissions = cordova.plugins.permissions;
+        permissions.checkPermission(permissions.WRITE_EXTERNAL_STORAGE, function(status) {
+            if (!status.hasPermission) {
+                // Solicitar permiso si no está concedido
+                permissions.requestPermission(permissions.WRITE_EXTERNAL_STORAGE, function(status) {
+                    if (status.hasPermission) {
+                        console.log("Permiso de almacenamiento concedido");
+                    } else {
+                        console.log("Permiso de almacenamiento denegado");
+                    }
+                }, function() {
+                    console.log("Error al solicitar permiso");
+                });
+            }
+        }, function() {
+            console.log("Error al verificar permiso");
+        });
+    } else {
+        console.log("El plugin de permisos de Cordova no está disponible");
+    }
+});
 const logosPath = {
     "AS PC": "logos/AS.png",
     "AS": "logos/AS.png",
