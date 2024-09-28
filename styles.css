@@ -38,7 +38,7 @@ h1 {
     display: grid;
     grid-template-columns: 2fr; /* Una columna por defecto */
     gap: 7px;
-    font-size: 12px;
+    font-size: 9px;
     width: 100%; /* Usar todo el ancho disponible */
     max-width: 430px; /* Tamaño máximo del contenedor */
     margin: 0 auto; /* Centrar el contenedor */
