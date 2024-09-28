@@ -36,11 +36,11 @@ h1 {
 /* Contenedor de equipos */
 .equipos-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Se ajusta automáticamente */
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* Columnas flexibles */
     gap: 7px;
     font-size: 9px;
     width: 100%; /* Usar todo el ancho disponible */
-     /* Ajustar según el diseño */
+    max-width: 381px; /* Tamaño máximo del contenedor */
     margin: 0 auto; /* Centrar el contenedor */
     box-sizing: border-box; /* Incluye padding y border en el tamaño del contenedor */
     justify-items: center; /* Centrar elementos en el eje horizontal */
@@ -64,16 +64,6 @@ h1 {
     margin: 5px; /* Agregar margen para espaciar los equipos */
 }
 
-.inputs-container {
-    display: flex; /* Puedes mantener esto para alinear los inputs horizontalmente */
-    justify-content: center; /* Centra horizontalmente los inputs */
-    align-items: center; /* Alinea verticalmente los inputs */
-}
-
-.equipo:hover {
-    transform: scale(1.02);
-}
-
 /* Contenedor para los inputs de cada equipo */
 .inputs-container {
     display: flex;
@@ -92,8 +82,8 @@ input {
     color: white;
     width: 30px; /* Ajusta el ancho según sea necesario */
     text-align: center; /* Centrar el contenido dentro del input */
-    line-height: 20px; /* Ajustar el espacio vertical del texto */
-    font-size: 10px; /* Asegúrate de que el texto se ajuste bien */
+    line-height: 18px; /* Ajustar el espacio vertical del texto */
+    font-size: 1em; /* Asegúrate de que el texto se ajuste bien */
 }
 
 /* Ocultar los spinners en inputs de tipo number */
@@ -163,29 +153,31 @@ button:active::after {
     from { opacity: 0; }
     to { opacity: 1; }
 }
-
-/* Media Queries para pantallas grandes (PC) */
 @media (min-width: 1300px) {
     .equipos-container {
-        grid-template-columns: repeat(6, 1fr);
-        max-width: 3000px;
-        /* Seis columnas en pantallas grandes */
-    }
-}
-
-/* Media Queries para pantallas medianas */
-@media (min-width: 168px) and (max-width: 1299px) {
-    .equipos-container {
-        grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas medianas */
-        max-width: 396px;
-        
+        grid-template-columns: repeat(6, 6fr); /* Seis columnas en pantallas grandes */
     }
 }
 
 /* Media Queries para pantallas pequeñas (móviles) */
+@media (max-width: 400px) {
+    h1 {
+        font-size: 2em; /* Reducir el tamaño del encabezado en pantallas pequeñas */
+    }
+
+    .equipos-container {
+        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+    }
+
+    button {
+        font-size: 12px; /* Ajustar tamaño de fuente de botones en móviles */
+        padding: 10px 5px; /* Ajustar padding para móviles */
+    }
+}
+
+/* Media Queries para pantallas medianas y grandes */
 @media (min-width: 401px) {
     .equipos-container {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Dos columnas en pantallas medianas y grandes */
-        
     }
 }
