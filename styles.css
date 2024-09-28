@@ -40,7 +40,7 @@ h1 {
     gap: 7px;
     font-size: 9px;
     width: 100%; /* Usar todo el ancho disponible */
-    max-width: 381px; /* Tamaño máximo del contenedor */
+    max-width: 393px; /* Tamaño máximo del contenedor */
     margin: 0 auto; /* Centrar el contenedor */
     box-sizing: border-box; /* Incluye padding y border en el tamaño del contenedor */
     justify-items: center; /* Centrar elementos en el eje horizontal */
