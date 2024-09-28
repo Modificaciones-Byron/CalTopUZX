@@ -2,20 +2,39 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>CalTop Soft / Tabla / UZX</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>CalTop Soft / Tabla / UZX TEST#5 </h1>
+    <h1>CalTop Soft / UZX</h1>
+    
     <div>
         <label for="numEquipos">Cantidad de equipos (1-15):</label>
         <input type="number" id="numEquipos" min="1" max="15" value="1">
         <button id="iniciarButton">Iniciar</button>
     </div>
+    <br>
     <div id="equiposForm" class="equipos-container"></div>
+    <br>
     <button id="resultadosButton" disabled>Generar Resultados</button>
-    <button id="imagenButton" disabled>Previsualizar y Descargar Imagen</button>
+    <br>
+    <button id="imagenButton" disabled>Descargar Imagen</button>
+    
+    <!-- Asegúrate de que este contenedor esté presente -->
+    <div class="container"></div> 
+
+    <script>
+        // JavaScript para permitir el desplazamiento vertical en dispositivos móviles
+        window.onload = function() {
+            // Obtener el alto de la ventana
+            var windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+            Q
+            // Establecer la altura mínima del contenedor para permitir el desplazamiento vertical
+            document.querySelector('.container').style.minHeight = windowHeight + 'px';
+        };
+    </script>
+    
     <script src="software.js"></script>
 </body>
 </html>
