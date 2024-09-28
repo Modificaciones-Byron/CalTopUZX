@@ -90,7 +90,7 @@ input {
     border: 1px solid #4CAF50;
     background-color: #2c3035;
     color: white;
-    width: 35px; /* Ajusta el ancho según sea necesario */
+    width: 30px; /* Ajusta el ancho según sea necesario */
     text-align: center; /* Centrar el contenido dentro del input */
     line-height: 18px; /* Ajustar el espacio vertical del texto */
     font-size: 1em; /* Asegúrate de que el texto se ajuste bien */
@@ -171,14 +171,14 @@ button:active::after {
 }
 
 /* Media Queries para pantallas medianas y grandes */
-@media (min-width: 368px) {
+@media (min-width: 168px) {
     .equipos-container {
         grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas medianas y grandes */
     }
 }
 
 /* Media Queries para pantallas pequeñas (móviles) */
-@media (max-width: 267px) {
+@media (max-width: 167px) {
     .equipos-container {
         grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
     }
