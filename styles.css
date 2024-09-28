@@ -173,6 +173,6 @@ button:active::after {
 /* Media Queries para pantallas medianas y grandes */
 @media (min-width: 401px) {
     .equipos-container {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Dos columnas en pantallas medianas y grandes */
+        grid-template-columns: repeat(auto-fill, minmax(150px, 2fr)); /* Dos columnas en pantallas medianas y grandes */
     }
 }
