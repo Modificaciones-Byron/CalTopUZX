@@ -36,14 +36,17 @@ h1 {
 /* Contenedor de equipos */
 .equipos-container {
     display: grid;
-    grid-template-columns: 2fr; /* Una columna por defecto */
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Usar columnas flexibles */
     gap: 7px;
     font-size: 9px;
     width: 100%; /* Usar todo el ancho disponible */
-    max-width: 430px; /* Tamaño máximo del contenedor */
+    max-width: 410px; /* Tamaño máximo del contenedor */
     margin: 0 auto; /* Centrar el contenedor */
     box-sizing: border-box; /* Incluye padding y border en el tamaño del contenedor */
+    justify-items: center; /* Centrar elementos en el eje horizontal */
+    align-items: center; /* Centrar elementos en el eje vertical */
 }
+
 
 .nombre-equipo {
     width: 93px; /* Ajustar el tamaño del input del nombre del equipo */
