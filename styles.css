@@ -183,10 +183,8 @@ button:active::after {
 }
 
 /* Media Queries para pantallas pequeñas (móviles) */
-@media (max-width: 10px) {
+@media (max-width: 167px) {
     .equipos-container {
-        grid-template-columns: 1fr;
-        max-width: 390px;
-         /* Una columna en pantallas pequeñas */
+        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
     }
 }
