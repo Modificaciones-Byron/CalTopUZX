@@ -6,7 +6,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background: linear-gradient(#000000, #9bdb77, #000000);
+    background: linear-gradient(#000000, #00d221, #000000);
     overflow: hidden; /* Evitar el zoom en móviles */
 }
 
@@ -67,7 +67,7 @@ body {
 .contenedor .usuario input:valid ~ label {
     top: -20px;
     left: 0;
-    color: #9bdb77; /* Color rojo */
+    color: #00d221; /* Color rojo */
     font-size: 12px;
 }
 
@@ -75,7 +75,7 @@ body {
     position: relative;
     display: inline-block;
     padding: 10px 20px;
-    color: #9bdb77; /* Color rojo */
+    color: #00d221; /* Color rojo */
     font-size: 16px;
     text-decoration: none;
     text-transform: uppercase;
@@ -83,7 +83,7 @@ body {
     transition: .5s;
     margin-top: 40px;
     letter-spacing: 4px;
-    border: 2px solid #9bdb77; /* Borde rojo */
+    border: 2px solid #00d221; /* Borde rojo */
     border-radius: 5px;
 }
 
@@ -229,7 +229,7 @@ body {
 }
 
 .modal-contenido h2 {
-    color: #9bdb77; /* Color rojo */
+    color: #00d221; /* Color rojo */
     margin-bottom: 10px; /* Espacio debajo del título */
 }
 
@@ -240,7 +240,7 @@ body {
 
 .modal-contenido button {
     padding: 10px 20px;
-    background-color: #9bdb77; /* Color rojo */
+    background-color: #00d221; /* Color rojo */
     border: none;
     border-radius: 5px;
     color: white;
