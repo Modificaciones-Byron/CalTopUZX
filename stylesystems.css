@@ -17,7 +17,7 @@ body {
     font-size: 13px; /* Ajusta el tamaño de la fuente */
     color: #00ff99; /* Color del texto brillante */
     padding: 6px 7px; /* Espaciado interno */
-    border: 2px solid #9bdb77;
+    border: 2px solid #79f139;
     border-radius: 15px;
     background: #1c1c1c; /* Color de fondo oscuro */
     cursor: pointer; /* Cambia el cursor al pasar por encima */
@@ -57,7 +57,7 @@ body {
 .copyButton {
     background: #1c1c1c;
     color: #00ff99;
-    border: 2px solid #9bdb77;
+    border: 2px solid #79f139;
     border-radius: 5px;
     padding: 5px 10px;
     cursor: pointer;
@@ -100,7 +100,7 @@ body {
 .equipo {
     box-shadow: 0 5px 15px rgba(4, 164, 172, 0.6); /* Sombra del botón */
     background-color: #191717;
-    border: 2px solid #9bdb77;
+    border: 2px solid #79f139;
     border-radius: 10px;
     padding: 7px;
     transition: transform 0.2s;
@@ -122,7 +122,7 @@ input {
     margin: 3px;
     padding: 2px;
     border-radius: 5px;
-    border: 1px solid #9bdb77;
+    border: 1px solid #79f139;
     background-color: #363637;
     color: white;
     width: 30px; /* Ajusta el ancho según sea necesario */
@@ -148,7 +148,7 @@ button {
     background: #1c1c1c; /* Color de fondo oscuro */
     color: #00ff99; /* Color del texto brillante */
     padding: 12px 10px; /* Espaciado interno */
-    border: 2px solid #9bdb77; /* Borde brillante */
+    border: 2px solid #79f139; /* Borde brillante */
     border-radius: 10px; /* Bordes redondeados */
     cursor: pointer; /* Cambia el cursor al pasar por encima */
     transition: all 0.4s ease; /* Transición suave */
