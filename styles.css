@@ -1,183 +1,259 @@
-/* Estilo para la página */
+html {
+    height: 100%;
+}
+
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #282c34;
-    color: white;
     margin: 0;
-    padding: 2px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: background-color 0.3s ease;
-    overflow-x: hidden; /* Prevenir el desbordamiento horizontal */
+    padding: 0;
+    font-family: sans-serif;
+    background: linear-gradient(#000000, #9bdb77, #000000);
+    overflow: hidden; /* Evitar el zoom en móviles */
 }
 
-h1 {
-    text-align: center;
-    font-size: 2.5em; /* Tamaño de fuente más moderado */
-    margin-bottom: 20px;
-    animation: fadeIn 3s, glowing 0.5s infinite alternate; /* Animaciones de aparición y brillo */
-    background: linear-gradient(90deg, #00ff99, #00ccff); /* Degradado colorido */
-    -webkit-background-clip: text; /* Clip para el texto */
-    -webkit-text-fill-color: transparent; /* Relleno transparente para el clip */
-    text-shadow: 0 0 10px rgba(0, 255, 153, 0.6), 0 0 15px rgba(0, 204, 255, 0.6); /* Sombra de texto simplificada */
-}
-
-/* Animación de brillo */
-@keyframes glowing {
-    0% {
-        text-shadow: 0 0 10px rgba(0, 255, 153, 0.4), 0 0 15px rgba(0, 204, 255, 0.4);
-    }
-    100% {
-        text-shadow: 0 0 15px rgba(0, 255, 153, 0.8), 0 0 30px rgba(0, 204, 255, 0.8);
-    }
-}
-
-/* Contenedor de equipos */
-.equipos-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* Columnas flexibles */
-    gap: 7px;
-    font-size: 9px;
-    width: 100%; /* Usar todo el ancho disponible */
-    max-width: 393px; /* Tamaño máximo del contenedor */
-    margin: 0 auto; /* Centrar el contenedor */
-    box-sizing: border-box; /* Incluye padding y border en el tamaño del contenedor */
-    justify-items: center; /* Centrar elementos en el eje horizontal */
-    align-items: center; /* Centrar elementos en el eje vertical */
-}
-
-.nombre-equipo {
-    width: 90px; /* Ajustar el tamaño del input del nombre del equipo */
-}
-
-/* Estilo para cada equipo */
-.equipo {
-    box-shadow: 0 5px 15px rgba(0, 255, 153, 0.2); /* Sombra del botón */
-    background-color: #3a3f47;
-    border: 2px solid #4CAF50;
-    border-radius: 10px;
-    padding: 7px;
-    transition: transform 0.2s;
-    box-sizing: border-box;
-    display: inline-block; /* Cambiado a inline-block */
-    margin: 5px; /* Agregar margen para espaciar los equipos */
-}
-
-/* Contenedor para los inputs de cada equipo */
-.inputs-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center; /* Centra horizontalmente los inputs */
-    align-items: center; /* Alinea verticalmente los inputs */
-}
-
-/* Estilos para inputs */
-input {
-    margin: 3px;
-    padding: 2px;
-    border-radius: 5px;
-    border: 1px solid #4CAF50;
-    background-color: #2c3035;
-    color: white;
-    width: 30px; /* Ajusta el ancho según sea necesario */
-    text-align: center; /* Centrar el contenido dentro del input */
-    line-height: 18px; /* Ajustar el espacio vertical del texto */
-    font-size: 1em; /* Asegúrate de que el texto se ajuste bien */
-}
-
-/* Ocultar los spinners en inputs de tipo number */
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-/* Para Firefox */
-input[type=number] {
-    -moz-appearance: textfield; /* Cambia a estilo de campo de texto */
-}
-
-/* Botones */
-button {
-    background: #1c1c1c; /* Color de fondo oscuro */
-    color: #00ff99; /* Color del texto brillante */
-    padding: 12px 10px; /* Espaciado interno */
-    border: 2px solid #00ff99; /* Borde brillante */
-    border-radius: 10px; /* Bordes redondeados */
-    cursor: pointer; /* Cambia el cursor al pasar por encima */
-    transition: all 0.4s ease; /* Transición suave */
-    font-size: 14px; /* Tamaño de la fuente */
-    font-weight: bold; /* Texto en negrita */
-    position: relative; /* Para el efecto de animación */
-    overflow: hidden; /* Para que la animación no salga del botón */
-    box-shadow: 0 5px 15px rgba(0, 255, 153, 0.4); /* Sombra del botón */
-}
-
-/* Efecto al pasar el mouse */
-button:hover {
-    background: #00ff99; /* Color de fondo al pasar el mouse */
-    color: #1c1c1c; /* Cambiar el color del texto */
-    transform: translateY(-4px); /* Eleva el botón al pasar el mouse */
-    box-shadow: 0 10px 30px rgba(0, 255, 153, 0.7); /* Sombra más intensa */
-}
-
-/* Efecto al hacer clic */
-button:active {
-    transform: translateY(2px); /* Baja el botón al hacer clic */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Sombra más pequeña al hacer clic */
-}
-
-/* Animación de pulsación */
-button::after {
-    content: '';
+.contenedor {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 300%;
-    height: 300%;
-    background: rgba(0, 255, 153, 0.4); /* Color de pulsación */
-    border-radius: 50%;
-    transition: all 0.5s ease; /* Transición suave */
-    transform: translate(-50%, -50%) scale(0); /* Oculto por defecto */
-    z-index: 0; /* Debajo del texto */
+    width: 360px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: #2c2c2c; /* Fondo más oscuro */
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    text-align: center; /* Centrar texto e imagen */
 }
 
-/* Efecto de pulsación al hacer clic */
-button:active::after {
-    transform: translate(-50%, -50%) scale(1); /* Expande el pulsar */
+.contenedor .logo {
+    width: 100px; /* Ajusta el tamaño del logo */
+    margin-bottom: 20px; /* Espacio debajo del logo */
 }
 
-/* Animación de aparición */
+.contenedor h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+}
+
+.contenedor .usuario {
+    position: relative;
+}
+
+.contenedor .usuario input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+  user-select: none;  /* Prevent text selection */
+}
+
+.contenedor .usuario label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.contenedor .usuario input:focus ~ label,
+.contenedor .usuario input:valid ~ label {
+    top: -20px;
+    left: 0;
+    color: #9bdb77; /* Color rojo */
+    font-size: 12px;
+}
+
+.contenedor .boton {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #9bdb77; /* Color rojo */
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+    letter-spacing: 4px;
+    border: 2px solid #9bdb77; /* Borde rojo */
+    border-radius: 5px;
+}
+
+.contenedor .boton:hover {
+    background: transparent;
+    color: #fff; /* Texto blanco al hacer hover */
+}
+
+.contenedor .boton span {
+    position: absolute;
+    display: block;
+}
+
+.contenedor .boton span:nth-child(1) {
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #03e9f4); /* Rojo */
+    animation: btn-anim1 1s linear infinite;
+}
+
+@keyframes btn-anim1 {
+    0% {
+        left: -100%;
+    }
+
+    50%,
+    100% {
+        left: 100%;
+    }
+}
+
+.contenedor .boton span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #03e9f4);
+    animation: btn-anim2 1s linear infinite;
+    animation-delay: .25s;
+}
+
+@keyframes btn-anim2 {
+    0% {
+        top: -100%;
+    }
+
+    50%,
+    100% {
+        top: 100%;
+    }
+}
+
+.contenedor .boton span:nth-child(3) {
+    right: -100%;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg, transparent, #03e9f4);
+    animation: btn-anim3 1s linear infinite;
+    animation-delay: .5s;
+}
+
+@keyframes btn-anim3 {
+    0% {
+        right: -100%;
+    }
+
+    50%,
+    100% {
+        right: 100%;
+    }
+}
+
+.contenedor .boton span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(270deg, transparent, #03e9f4);
+    animation: btn-anim4 1s linear infinite;
+    animation-delay: .75s;
+}
+
+@keyframes btn-anim4 {
+    0% {
+        bottom: -100%;
+    }
+
+    50%,
+    100% {
+        bottom: 100%;
+    }
+}
+
+/* Estilos para la ventana modal */
+.modal {
+    display: none; /* Ocultar inicialmente */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo semitransparente */
+    animation: fadeIn 0.5s; /* Efecto de aparición */
+}
+
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-@media (min-width: 1300px) {
-    .equipos-container {
-        grid-template-columns: repeat(6, 6fr); /* Seis columnas en pantallas grandes */
-    }
-}
-
-/* Media Queries para pantallas pequeñas (móviles) */
-@media (max-width: 400px) {
-    h1 {
-        font-size: 2em; /* Reducir el tamaño del encabezado en pantallas pequeñas */
+    from {
+        opacity: 0;
     }
 
-    .equipos-container {
-        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
-    }
-
-    button {
-        font-size: 12px; /* Ajustar tamaño de fuente de botones en móviles */
-        padding: 10px 5px; /* Ajustar padding para móviles */
+    to {
+        opacity: 1;
     }
 }
 
-/* Media Queries para pantallas medianas y grandes */
-@media (min-width: 401px) {
-    .equipos-container {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Dos columnas en pantallas medianas y grandes */
+.modal-contenido {
+    background-color: #2c2c2c;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 300px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    animation: slideIn 0.5s; /* Efecto de entrada */
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
     }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-contenido h2 {
+    color: #9bdb77; /* Color rojo */
+    margin-bottom: 10px; /* Espacio debajo del título */
+}
+
+.modal-contenido p {
+    color: #fff; /* Texto blanco */
+    margin-bottom: 20px; /* Espacio debajo del mensaje */
+}
+
+.modal-contenido button {
+    padding: 10px 20px;
+    background-color: #9bdb77; /* Color rojo */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px #2c2c2c inset !important; /* Color de fondo */
+    -webkit-text-fill-color: #fff !important; /* Color del texto */
+    
+}
+
+.modal-contenido button:hover {
+    background-color: #d52e3a; /* Color rojo más oscuro */
+    transform: scale(1.05); /* Efecto de aumento al pasar el mouse */
 }
