@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>CalTop Soft / Tabla / UZX</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="stylesystems.css">
+</head>
+
+<body>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000000;
+            color: white;
+            margin: 0;
+            padding: 2px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            height: 100vh; /* Ajuste para evitar deslizamiento extra */
+        }
+        .listname{
+            font-size: 17px;
+            margin-top: 7px;
+            margin-left: 2px;
+        }
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -350px; /* Ocultar inicialmente */
+            width: 240px; /* Ancho de la barra */
+            height: 100vh; /* Altura completa sin afectar la web */
+            background-color: #2c2c2c; /* Color de fondo */
+            transition: left 0.3s ease; /* Animación */
+            z-index: 1000; /* Asegurarse de que esté por encima */
+            padding: 15px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+            overflow-y: auto; /* Desplazamiento exclusivo dentro de la barra */
+        }
+
+        #toggleButton {
+            position: fixed;
+            box-shadow: none;
+            top: 2px;
+            left: 3px;
+            width: 50px;
+            font-size: 45px; /* Ajusta el tamaño del texto aquí */
+            padding: 0; /* Elimina el padding para evitar espacio extra */
+            cursor: pointer;
+            z-index: 1001; /* Asegurarse de que el botón esté por encima */
+            background: none; /* Quitar el color de fondo */
+            border: none; /* Quitar el borde */
+            color: #00ff99; /* Mantén el color que deseas */
+
+        }
+
+        #toggleButton.hidden {
+            display: none; /* Ocultar el botón cuando se añade la clase "hidden" */
+        }
+
+        .closeButton {
+            background: transparent;
+            box-shadow: none;
+            margin-top: 2px;
+            text-align: center;
+            width: 50px;
+            height: 40px;
+            color: #FF0000;
+            backgraund-color: black;
+            font-size: 25px;
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            line-height: 12px;
+        }
+
+        #nameList {
+            display: flex;
+            margin-left: -2px;
+            padding: 0px 1px;
+            flex-wrap: wrap; /* Nombres crecen de izquierda a derecha */
+        }
+
+        .name-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            padding: 10px;
+            margin-bottom: 1px;
+            background-color: #1c1c1c; /* Fondo de cada nombre */
+            border-radius: 5px;
+            width: calc(100% - 0px); /* Ajustar para hacer más anchos los elementos */
+            min-width: 220px; /* Tamaño mínimo de cada item */
+            height: 15px; /* Establecer altura para evitar nombres altos */
+        }
+
+        .copyButton {
+            background: #1c1c1c;
+            color: #00ff99;
+            border: none;
+            box-shadow: none;
+            left: 5px;
+            padding: 1px 5px;
+            cursor: pointer;
+        }
+
+        .copyButton:hover {
+            background: #00ff99;
+            color: #1c1c1c;
+        }
+
+        .sidebar.open {
+            left: 0; /* Mostrar la barra lateral */
+        }
+    </style>
+
+    <!-- Botón para mostrar la barra lateral -->
+    <button id="toggleButton">=</button>
+    <br>
+    <br>
+    <!-- Logo -->
+    <img class="lg" src="logos/UZX_TEAM.png" alt="Logo">
+    <div>
+        <label for="numEquipos">Cantidad de equipos (1-15):</label>
+        <input type="number" id="numEquipos" min="1" max="15" value="1">
+        <button id="iniciarButton">Iniciar</button>
+    </div>
+    <br>
+    <div id="equiposForm" class="equipos-container"></div>
+    <br>
+    <button id="resultadosButton" disabled>Generar Resultados</button>
+    <br>
+    <button id="imagenButton" disabled>Descargar Imagen</button>
+    <br>
+
+    <div class="container"></div>
+
+    <!-- Barra lateral -->
+    <div id="sidebar" class="sidebar">
+        <button class="closeButton" id="closeButton">&times;</button>
+        <h3 class="listname">Lista de Nombres</h3>
+        <div id="nameList"></div>
+    </div>
+
+    <script src="software.js"></script>
+    <script>
+        // Verificar si el usuario está autenticado y si la versión es la correcta
+        window.onload = function() {
+            const isAuthenticated = localStorage.getItem('auth');
+            const versionLocal = localStorage.getItem('version');
+
+            // Simulando la versión actual del servidor
+            const versionActual = '1.0'; // Esta versión debe actualizarse cuando cambies usuario/contraseña en el servidor
+
+            if (isAuthenticated !== 'true' || versionLocal !== versionActual) {
+                // Si no está autenticado o la versión es diferente, redirigir al inicio de sesión
+                localStorage.removeItem('auth'); // Limpiar el estado de autenticación
+                window.location.href = 'index.html';
+                return;
+            }
+
+            // Lógica para generar dinámicamente los nombres desde logosPath
+            const nameList = document.getElementById('nameList');
+            for (const equipo in logosPath) {
+                if (logosPath.hasOwnProperty(equipo)) {
+                    // Crear un contenedor para cada equipo
+                    const nameItem = document.createElement('div');
+                    nameItem.classList.add('name-item');
+                    
+                    // Crear el botón de copiar
+                    const copyButton = document.createElement('button');
+                    copyButton.classList.add('copyButton');
+                    copyButton.textContent = 'Copiar';
+                    copyButton.dataset.name = equipo;
+
+                    // Añadir el evento para copiar al portapapeles
+                    copyButton.addEventListener('click', function() {
+                        const name = this.dataset.name;
+                        navigator.clipboard.writeText(name).then(() => {
+                            alert(`${name} copiado al portapapeles!`);
+                        });
+                    });
+
+                    // Añadir el nombre del equipo y el botón a la lista
+                    nameItem.textContent = equipo;
+                    nameItem.appendChild(copyButton);
+                    nameList.appendChild(nameItem);
+                }
+            }
+
+        // Lógica para la barra lateral
+        document.getElementById('toggleButton').addEventListener('click', function() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+            
+            // Ocultar el botón "=" cuando la barra esté abierta
+            if (sidebar.classList.contains('open')) {
+                this.classList.add('hidden');
+            }
+        });
+
+        document.getElementById('closeButton').addEventListener('click', function() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.remove('open');
+            
+            // Mostrar el botón "=" cuando la barra se cierre
+            document.getElementById('toggleButton').classList.remove('hidden');
+        });
+        
+        document.addEventListener('click', function(event) {
+        const sidebar = document.getElementById('sidebar');
+        const toggleButton = document.getElementById('toggleButton');
+
+        // Verifica si el clic fue fuera de la barra y del botón
+        if (sidebar.classList.contains('open') && !sidebar.contains(event.target) && !toggleButton.contains(event.target)) {
+            sidebar.classList.remove('open'); // Cerrar la barra
+            toggleButton.classList.remove('hidden'); // Mostrar el botón de abrir
+        }
+    });
+
+};
+    </script>
+</body>
+
+</html>
