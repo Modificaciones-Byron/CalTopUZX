@@ -1,40 +1,77 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>CalTop Soft / Tabla / UZX</title>
+    <title>Iniciar Datos</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <h1>CalTop Soft / UZX</h1>
-    
-    <div>
-        <label for="numEquipos">Cantidad de equipos (1-15):</label>
-        <input type="number" id="numEquipos" min="1" max="15" value="1">
-        <button id="iniciarButton">Iniciar</button>
+    <div class="contenedor">
+        <img src="logos/UZX_TEAM.png" alt="Logo T1" class="logo">
+        <h2>Inicio de sesión</h2>
+        <form id="login-form" action="">
+            <div class="usuario">
+                <input type="text" id="correo" required>
+                <label>Correo</label>
+            </div>
+
+            <div class="usuario">
+                <input type="password" id="contrasena" required>
+                <label>Contraseña</label>
+            </div>
+
+            <a href="#" class="boton" onclick="iniciarSesion(event)">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                Iniciar
+            </a>
+        </form>
     </div>
-    <br>
-    <div id="equiposForm" class="equipos-container"></div>
-    <br>
-    <button id="resultadosButton" disabled>Generar Resultados</button>
-    <br>
-    <button id="imagenButton" disabled>Descargar Imagen</button>
-    
-    <!-- Asegúrate de que este contenedor esté presente -->
-    <div class="container"></div> 
+
+    <!-- Ventana modal para el mensaje de error -->
+    <div id="modal" class="modal">
+        <div class="modal-contenido">
+            <h2>Error</h2>
+            <p>La contraseña es incorrecta.</p>
+            <button onclick="ocultarError()">OK</button>
+        </div>
+    </div>
 
     <script>
-        // JavaScript para permitir el desplazamiento vertical en dispositivos móviles
-        window.onload = function() {
-            // Obtener el alto de la ventana
-            var windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-            Q
-            // Establecer la altura mínima del contenedor para permitir el desplazamiento vertical
-            document.querySelector('.container').style.minHeight = windowHeight + 'px';
-        };
+        function iniciarSesion(event) {
+            event.preventDefault(); // Prevenir el envío del formulario
+            const correo = document.getElementById('correo').value;
+            const contrasena = document.getElementById('contrasena').value;
+
+            // Usuario y contraseña predeterminados
+            const usuarioCorrecto = 'ultrazonex@gmail.com';
+            const contrasenaCorrecta = 'ultrazonex';
+            const versionActual = '1.0'; // Cambia esta versión cuando cambies la contraseña
+
+            if (correo === usuarioCorrecto && contrasena === contrasenaCorrecta) {
+                // Almacenar en el localStorage que el usuario ha iniciado sesión y guardar la versión actual
+                localStorage.setItem('auth', 'true');
+                localStorage.setItem('version', versionActual);
+                window.location.href = 'system.html'; // Redirigir a la página del sistema
+            } else {
+                mostrarError(); // Mostrar la ventana modal de error
+            }
+        }
+
+        function mostrarError() {
+            document.getElementById('modal').style.display = 'block';
+        }
+
+        function ocultarError() {
+            document.getElementById('modal').style.display = 'none';
+        }
     </script>
-    
-    <script src="software.js"></script>
 </body>
+
 </html>
