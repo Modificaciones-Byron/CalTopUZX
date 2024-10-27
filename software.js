@@ -129,6 +129,7 @@ const logosPath = {
     "RS": "logos/RS.png",
     "RS ELITE": "logos/RS.png",
     "SINEIRA": "logos/SN.png",
+    "SUPERBBCHITOS": "logos/SB.png",
     "T1": "logos/T1.png",
     "T1 PC": "logos/T1.png",
     "TEAM 21": "logos/TEAM21.png",
