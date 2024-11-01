@@ -384,45 +384,62 @@ function crearImagen() {
         const timer = setTimeout(() => {
             ocultarSpinner(); // Ocultar el spinner si hay un fallo
             mostrarError("Ha habido un fallo, Generar y Descargar de nuevo.");
-        }, 60000); // 60000 ms = 1 minuto
+        }, 180000); // 60000 ms = 1 minuto
     }).catch(function(error) {
         console.error("Error loading font: ", error);
     });   
 }
 // Función para mostrar el mensaje de error
 function mostrarError(mensaje) {
-    // Crear contenedor para el mensaje de error si no existe
+    // Obtener o crear el contenedor de mensaje de error
     let errorDiv = document.getElementById("errorMensaje");
     if (!errorDiv) {
         errorDiv = document.createElement("div");
         errorDiv.id = "errorMensaje";
         errorDiv.style.position = "fixed";
-        errorDiv.style.top = "50%"; // Centrar verticalmente
-        errorDiv.style.left = "50%"; // Centrar horizontalmente
-        errorDiv.style.transform = "translate(-50%, -50%)"; // Ajustar para centrar
-        errorDiv.style.backgroundColor = "rgba(255, 0, 0, 0.8)";
+        errorDiv.style.top = "50%";
+        errorDiv.style.left = "50%";
+        errorDiv.style.transform = "translate(-50%, -50%)";
+        errorDiv.style.backgroundColor = "rgba(255, 0, 0, 0.9)";
         errorDiv.style.color = "white";
-        errorDiv.style.padding = "10px 20px";
-        errorDiv.style.borderRadius = "5px";
+        errorDiv.style.padding = "15px 25px";
+        errorDiv.style.borderRadius = "8px";
         errorDiv.style.zIndex = "1000";
-        errorDiv.style.display = "none"; // Ocultar inicialmente
-
-        // Crear botón de cerrar
-        const cerrarButton = document.createElement("button");
-        cerrarButton.innerText = "OK";
-        cerrarButton.style.marginLeft = "10px";
-        cerrarButton.onclick = function() {
-            errorDiv.style.display = "none"; // Ocultar el mensaje de error al hacer clic
-        };
-        
-        errorDiv.appendChild(document.createTextNode(mensaje)); // Añadir el mensaje
-        errorDiv.appendChild(cerrarButton); // Añadir botón al div
-        document.body.appendChild(errorDiv); // Añadir el div al body
+        errorDiv.style.textAlign = "center";
+        errorDiv.style.maxWidth = "90%";
+        errorDiv.style.wordWrap = "break-word";
+        errorDiv.style.fontSize = "1rem";
+        errorDiv.style.boxShadow = "0px 4px 8px rgba(0, 0, 0, 0.3)";
+        document.body.appendChild(errorDiv);
     }
     
-    errorDiv.style.display = "block"; // Mostrar el mensaje de error
-}
+    // Limpiar contenido previo y añadir mensaje nuevo
+    errorDiv.innerHTML = ''; // Eliminar contenido previo
+    const mensajeTexto = document.createElement("span");
+    mensajeTexto.innerText = mensaje;
 
+    // Crear y añadir botón de cerrar
+    const cerrarButton = document.createElement("button");
+    cerrarButton.innerText = "OK";
+    cerrarButton.style.marginTop = "10px";
+    cerrarButton.style.padding = "5px 10px";
+    cerrarButton.style.border = "none";
+    cerrarButton.style.backgroundColor = "#333";
+    cerrarButton.style.color = "white";
+    cerrarButton.style.borderRadius = "4px";
+    cerrarButton.style.cursor = "pointer";
+    cerrarButton.onclick = function() {
+        errorDiv.style.display = "none"; // Ocultar el mensaje de error al hacer clic
+    };
+
+    // Añadir mensaje y botón al contenedor
+    errorDiv.appendChild(mensajeTexto);
+    errorDiv.appendChild(document.createElement("br")); // Separador
+    errorDiv.appendChild(cerrarButton);
+
+    // Mostrar el mensaje de error
+    errorDiv.style.display = "block";
+}
 
 document.getElementById("iniciarButton").onclick = iniciar;
 document.getElementById("resultadosButton").onclick = generarResultados;
