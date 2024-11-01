@@ -351,6 +351,7 @@ function crearImagen() {
                         link.download = "Tabla_Resultados.png";
                         link.click();
                         ocultarSpinner(); // Ocultar el spinner al finalizar
+                        clearTimeout(timer); // Cancelar el temporizador si se completó correctamente
                     }
                 };
                 logo.onerror = function () {
@@ -374,15 +375,53 @@ function crearImagen() {
                         link.download = "Tabla_Resultados.png";
                         link.click();
                         ocultarSpinner(); // Ocultar el spinner al finalizar
+                        clearTimeout(timer); // Cancelar el temporizador si se completó correctamente
                     }
                 };
             });
         };
+        // Establecer un temporizador de 1 minuto para ocultar el spinner si no se ha completado la carga
+        const timer = setTimeout(() => {
+            ocultarSpinner(); // Ocultar el spinner si hay un fallo
+            mostrarError("Ha habido un fallo, Generar y Descargar de nuevo.");
+        }, 60000); // 60000 ms = 1 minuto
     }).catch(function(error) {
         console.error("Error loading font: ", error);
-    });
+    });   
 }
+// Función para mostrar el mensaje de error
+function mostrarError(mensaje) {
+    // Crear contenedor para el mensaje de error si no existe
+    let errorDiv = document.getElementById("errorMensaje");
+    if (!errorDiv) {
+        errorDiv = document.createElement("div");
+        errorDiv.id = "errorMensaje";
+        errorDiv.style.position = "fixed";
+        errorDiv.style.top = "50%"; // Centrar verticalmente
+        errorDiv.style.left = "50%"; // Centrar horizontalmente
+        errorDiv.style.transform = "translate(-50%, -50%)"; // Ajustar para centrar
+        errorDiv.style.backgroundColor = "rgba(255, 0, 0, 0.8)";
+        errorDiv.style.color = "white";
+        errorDiv.style.padding = "10px 20px";
+        errorDiv.style.borderRadius = "5px";
+        errorDiv.style.zIndex = "1000";
+        errorDiv.style.display = "none"; // Ocultar inicialmente
 
+        // Crear botón de cerrar
+        const cerrarButton = document.createElement("button");
+        cerrarButton.innerText = "OK";
+        cerrarButton.style.marginLeft = "10px";
+        cerrarButton.onclick = function() {
+            errorDiv.style.display = "none"; // Ocultar el mensaje de error al hacer clic
+        };
+        
+        errorDiv.appendChild(document.createTextNode(mensaje)); // Añadir el mensaje
+        errorDiv.appendChild(cerrarButton); // Añadir botón al div
+        document.body.appendChild(errorDiv); // Añadir el div al body
+    }
+    
+    errorDiv.style.display = "block"; // Mostrar el mensaje de error
+}
 
 
 document.getElementById("iniciarButton").onclick = iniciar;
