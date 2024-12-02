@@ -153,7 +153,7 @@ const logosPath = {
     "TFO": "logos/TFO.png",
     "TFO NG": "logos/TFO.png",
     "ULT ELITE": "logos/ULT.png",
-    "UNDER WOLRD": "logos/UW.png"
+    "UNDER WOLRD": "logos/UW.png",
     "UNKNOWS": "logos/UNK.png",
     "UNNAMED": "logos/UNNAMED.png",
     "UNNAMED R": "logos/UNNAMED.png",
