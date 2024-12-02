@@ -179,7 +179,6 @@ const logosPath = {
     "21S": "logos/21S.png",
     "6XZ E-SPORTS": "logos/6XZ.png",
     "7Z GLIZZY": "logos/GLIZZY.png",
-    "8GAY": "logos/GAY.png", // FALTA LOGO
 };
 
 
