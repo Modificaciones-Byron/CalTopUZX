@@ -17,6 +17,7 @@ const logosPath = {
     "ALQ STORM": "logos/ALQ.png",
     "ALQ V2": "logos/ALQ.png",
     "ALYANZ E-SPORTS": "logos/ALYANZ.png",
+    "TEAM ALYANZ M": "logos/ALYANZ.png",
     "ALYANZ GIRLS": "logos/ALYANZ.png",
     "ALYANZ UZK": "logos/ALYANZ.png",
     "AS": "logos/AS.png",
