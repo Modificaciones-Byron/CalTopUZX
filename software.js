@@ -358,7 +358,7 @@ function crearImagen() {
                 logo.onload = function () {
                     ctx.drawImage(logo, ...positions.logo[index], 260, 260);
 
-                    ctx.fillStyle = (index === 0) ? "yellow" : "white"; 
+                    ctx.fillStyle = (index === 0) ? "#fcff37" : "white"; 
                     ctx.font = "95px Impact";
                     ctx.textAlign = "left";
                     ctx.fillText(equipo.nombre, ...positions.equipo[index]);
@@ -382,7 +382,7 @@ function crearImagen() {
                     }
                 };
                 logo.onerror = function () {
-                    ctx.fillStyle = (index === 0) ? "yellow" : "white"; 
+                    ctx.fillStyle = (index === 0) ? "#fcff37" : "white"; 
                     ctx.font = "95px Impact";
                     ctx.textAlign = "left";
                     ctx.fillText(equipo.nombre, ...positions.equipo[index]);
