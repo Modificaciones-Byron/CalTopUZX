@@ -223,16 +223,12 @@ class Equipo {
 
     calcularPuntosTop(posicion) {
         const puntos = {
-            1: 35, 
-            2: 30, 
+            1: 50, 
+            2: 35, 
             3: 25, 
-            4: 20,
+            4: 15,
             5: 10, 
-            6: 7, 
-            7: 5, 
-            8: 3,
-            9: 2, 
-            10: 1
+            6: 5
         };
         return puntos[posicion] || 0;
     }
