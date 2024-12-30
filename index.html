@@ -44,21 +44,24 @@
     </div>
 
     <script>
-        function iniciarSesion(event) {
+        async function iniciarSesion(event) {
             event.preventDefault(); // Prevenir el envío del formulario
+
             const correo = document.getElementById('correo').value;
             const contrasena = document.getElementById('contrasena').value;
 
-            // Usuario y contraseña predeterminados
-            const usuarioCorrecto = 'ultrazonex@gmail.com';
-            const contrasenaCorrecta = 'ultrazonex';
-            const versionActual = '1.0'; // Cambia esta versión cuando cambies la contraseña
+            // Obtener datos desde config.json
+            const response = await fetch('config.json');
+            const data = await response.json();
+
+            const usuarioCorrecto = data.usuario;
+            const contrasenaCorrecta = data.contrasena;
+            const versionActual = data.version;
 
             if (correo === usuarioCorrecto && contrasena === contrasenaCorrecta) {
-                // Almacenar en el localStorage que el usuario ha iniciado sesión y guardar la versión actual
                 localStorage.setItem('auth', 'true');
                 localStorage.setItem('version', versionActual);
-                window.location.href = 'system.html'; // Redirigir a la página del sistema
+                window.location.href = 'system.html';
             } else {
                 mostrarError(); // Mostrar la ventana modal de error
             }
@@ -71,6 +74,14 @@
         function ocultarError() {
             document.getElementById('modal').style.display = 'none';
         }
+    </script>
+    <script>
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.addEventListener('keydown', event => {
+            if (event.ctrlKey && (event.key === 'u' || event.key === 's' || event.key === 'i')) {
+                event.preventDefault();
+            }
+        }); 
     </script>
 </body>
 
